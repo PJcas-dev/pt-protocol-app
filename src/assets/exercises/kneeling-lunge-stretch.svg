@@ -1,0 +1,30 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="400" fill="white"/>
+  
+  <!-- Ground Shadow -->
+  <ellipse cx="200" cy="360" rx="80" ry="6" fill="#F0F0F0"/>
+
+  <!-- Lunge Figure -->
+  <g transform="translate(200, 200)" stroke-linecap="round" stroke-linejoin="round">
+    
+    <!-- Back Leg (Kneeling - Focus Area) -->
+    <path d="M -40,150 L -40,40 L 0,0" stroke="#29B6F6" stroke-width="14" fill="none"/>
+    
+    <!-- Front Leg (Planted) -->
+    <path d="M 40,150 L 40,50 L 0,0" stroke="#546E7A" stroke-width="14" fill="none"/>
+    
+    <!-- Torso (Upright) -->
+    <path d="M 0,0 L 0,-90" stroke="#546E7A" stroke-width="16" fill="none"/>
+    
+    <!-- Head -->
+    <circle cx="0" cy="-110" r="14" fill="#546E7A"/>
+    
+    <!-- Arms (Hands on hips/thigh) -->
+    <path d="M 0,-70 L 20,-30" stroke="#546E7A" stroke-width="12" fill="none"/>
+  </g>
+
+  <!-- Stretch Indicator -->
+  <path d="M 140 240 L 150 260 L 170 240" stroke="#29B6F6" stroke-width="4" fill="none" opacity="0.6"/>
+  
+  <text x="140" y="380" font-family="Arial" font-size="14" fill="#90A4AE">Hip Flexor</text>
+</svg>

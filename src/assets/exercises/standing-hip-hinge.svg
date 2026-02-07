@@ -1,0 +1,32 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="400" fill="white"/>
+  
+  <!-- Ground Shadow -->
+  <ellipse cx="200" cy="360" rx="60" ry="6" fill="#F0F0F0"/>
+
+  <!-- Hinge Figure -->
+  <g transform="translate(200, 200)" stroke-linecap="round" stroke-linejoin="round">
+    
+    <!-- Legs (Straight but soft) -->
+    <path d="M -10,150 L -10,40 L 0,-20" stroke="#546E7A" stroke-width="14" fill="none"/>
+    <path d="M 10,150 L 10,40 L 0,-20" stroke="#546E7A" stroke-width="14" fill="none"/>
+    
+    <!-- Torso (Hinged forward 45 deg) -->
+    <path d="M 0,-20 L 60,-80" stroke="#546E7A" stroke-width="16" fill="none"/>
+    
+    <!-- Head -->
+    <circle cx="75" cy="-95" r="14" fill="#546E7A"/>
+    
+    <!-- Arms (Holding 'weight' or crossed) -->
+    <path d="M 10,-40 L 40,-70" stroke="#546E7A" stroke-width="12" fill="none"/>
+    
+    <!-- Highlight Hinge Point -->
+    <circle cx="0" cy="-20" r="8" fill="#29B6F6"/>
+  </g>
+
+  <!-- Motion Indicator -->
+  <path d="M 240 100 Q 220 140 260 160" stroke="#29B6F6" stroke-width="4" fill="none" stroke-dasharray="8,8" opacity="0.6"/>
+  <polygon points="260,155 270,165 255,168" fill="#29B6F6" opacity="0.6"/>
+  
+  <text x="140" y="380" font-family="Arial" font-size="14" fill="#90A4AE">Hip Hinge</text>
+</svg>

@@ -1,0 +1,30 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="400" fill="white"/>
+  
+  <!-- Ground Shadow -->
+  <ellipse cx="200" cy="320" rx="120" ry="6" fill="#F0F0F0"/>
+
+  <!-- Clamshell Figure -->
+  <g transform="translate(200, 250)" stroke-linecap="round" stroke-linejoin="round">
+    
+    <!-- Bottom Leg (Passive) -->
+    <path d="M -20,0 L 40,-20 L 40,30" stroke="#B0BEC5" stroke-width="14" fill="none"/>
+    
+    <!-- Torso -->
+    <path d="M -20,0 L -90,0" stroke="#546E7A" stroke-width="16" fill="none"/>
+    
+    <!-- Head -->
+    <circle cx="-110" cy="-5" r="14" fill="#546E7A"/>
+    
+    <!-- Top Leg (Active - Opening) -->
+    <path d="M -20,0 L 40,-50 L 40,-10" stroke="#29B6F6" stroke-width="14" fill="none"/>
+    
+    <!-- Feet (Connected) -->
+    <circle cx="40" cy="10" r="6" fill="#546E7A"/>
+  </g>
+
+  <!-- Opening Arrow -->
+  <path d="M 250 180 Q 260 160 250 140" stroke="#29B6F6" stroke-width="4" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <text x="150" y="380" font-family="Arial" font-size="14" fill="#90A4AE">Clamshell</text>
+</svg>

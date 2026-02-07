@@ -1,0 +1,31 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="400" fill="white"/>
+  
+  <!-- Ground Shadow -->
+  <ellipse cx="200" cy="360" rx="40" ry="6" fill="#F0F0F0"/>
+
+  <!-- Balance Figure -->
+  <g transform="translate(200, 200)" stroke-linecap="round" stroke-linejoin="round">
+    
+    <!-- Standing Leg (Strong) -->
+    <path d="M 0,150 L 0,40 L 0,-20" stroke="#546E7A" stroke-width="14" fill="none"/>
+    
+    <!-- Lifted Leg (Active) -->
+    <path d="M 0,40 L 30,80 L 35,140" stroke="#29B6F6" stroke-width="14" fill="none"/>
+    
+    <!-- Torso -->
+    <path d="M 0,-20 L 0,-80" stroke="#546E7A" stroke-width="16" fill="none"/>
+    
+    <!-- Head -->
+    <circle cx="0" cy="-100" r="14" fill="#546E7A"/>
+    
+    <!-- Arms (Balancer) -->
+    <path d="M -30,-50 L 0,-50 L 30,-50" stroke="#546E7A" stroke-width="12" fill="none"/>
+  </g>
+  
+  <!-- Wobble/Balance Lines -->
+  <path d="M 160 360 L 180 360" stroke="#29B6F6" stroke-width="2"/>
+  <path d="M 220 360 L 240 360" stroke="#29B6F6" stroke-width="2"/>
+  
+  <text x="150" y="380" font-family="Arial" font-size="14" fill="#90A4AE">Balance</text>
+</svg>

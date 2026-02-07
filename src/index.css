@@ -1,0 +1,131 @@
+/* Soft UI / Modern "Floating" Design System */
+:root {
+  /* Palette - Light Blue-Grey Theme */
+  --primary-blue: #007AFF;
+  /* Apple/Modern Blue */
+  --primary-blue-dark: #0056B3;
+  --primary-blue-light: #E1F0FF;
+
+  --bg-app: #F5F7FA;
+  /* Overall app bg (slate-grey-ish) */
+  --bg-primary: #FFFFFF;
+  /* Card bg */
+  --bg-secondary: #F0F2F5;
+  /* Hover/Secondary bg */
+
+  --text-primary: #1A1D1F;
+  /* High contrast dark */
+  --text-secondary: #6F767E;
+  --text-light: #9A9FA5;
+
+  --border-color: #EFEFEF;
+  --border-light: #F4F4F4;
+
+  /* Floating UI Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.08);
+
+  /* Modern Radius */
+  --radius-sm: 12px;
+  --radius-md: 24px;
+  /* Highly rounded */
+  --radius-lg: 32px;
+
+  --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 1.5rem;
+  line-height: 1.3;
+}
+
+h3 {
+  font-size: 1.25rem;
+  line-height: 1.4;
+}
+
+h4 {
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+
+p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+a {
+  color: var(--primary-blue);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--primary-blue-dark);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-light);
+}
