@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 export default function Sidebar({ weeks, currentWeekId, currentDay, onSelectWeek, onSelectDay }) {
   return (
     <aside className="sidebar">

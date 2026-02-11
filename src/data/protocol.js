@@ -4,10 +4,10 @@ export const protocol = [
         title: "Week 0-1: Acute Phase",
         cover: "/assets/covers/cover_week_0_1_spine_1766979839813.png",
         goal: "Control pain and inflammation, protect the injured disc.",
-        description: "Focus on pain relief and gentle movement. Avoid heavy bending, lifting, twisting, or prolonged sitting.",
+        description: "Focus on pain relief and gentle movement. Limit painful bending/lifting/twisting early, then gradually reintroduce tolerated movement.",
         educational: [
-            "Disc healing takes 3-4 months; outer tear scars over in first 3-4 weeks.",
-            "Avoid 'fetal position' or forward bending.",
+            "Disc recovery is gradual and varies by person; symptoms often improve over weeks to months.",
+            "Avoid positions or motions that clearly worsen leg symptoms during flare-ups.",
             "Use 'active rest' positions like lying on back with knees bent."
         ],
         modalities: [
@@ -72,7 +72,8 @@ export const protocol = [
                 type: "Cardio",
                 duration: "5-10 mins",
                 frequency: "Several times daily",
-                description: "Maintain circulation. Keep upright posture."
+                description: "Maintain circulation and confidence with movement.",
+                instructions: "Walk at an easy pace and stop before symptoms spike. Increase time gradually as tolerated."
             }
         ]
     },
@@ -106,8 +107,8 @@ export const protocol = [
                 type: "Extension",
                 reps: "10 reps",
                 sets: "Every 2 hours",
-                description: "Dynamic extension exercise to help push the disc material back into place.",
-                instructions: "Lie face down with hands under your shoulders (like a push-up position). Press your upper body up until arms are straight, but keep your hips and pelvis completely relaxed on the floor. Hold for 1-2 seconds, then lower back down. Repeat rhythmically. Stop if leg pain increases/peripheralizes.",
+                description: "Dynamic extension exercise that may help centralize symptoms in people with an extension preference.",
+                instructions: "Lie face down with hands under your shoulders (like a push-up position). Press your upper body up until arms are straight, but keep your hips and pelvis completely relaxed on the floor. Hold for 1-2 seconds, then lower back down. Repeat rhythmically. Stop if leg pain travels farther down the leg (peripheralizes).",
                 image: "/src/assets/exercises/prone-pressup-new.png"
             },
             {
@@ -145,6 +146,7 @@ export const protocol = [
                 name: "Seated Nerve Floss",
                 type: "Mobility",
                 reps: "5-10 reps/side",
+                description: "Gentle neural mobility drill. Use a smooth, pain-free rhythm.",
                 instructions: "Seated slump. Extend leg + Head up. Bend knee + Head down (chin to chest). Rhythmically.",
                 image: "/src/assets/exercises/seated-nerve-floss.png"
             },
@@ -429,7 +431,7 @@ export const protocol = [
                 reps: "10 reps",
                 sets: "3x/week",
                 description: "Increase weight gradually. Prioritize form.",
-                instructions: "Front/Back squats, Conventional deadlifts (start light).",
+                instructions: "Progress squat/deadlift loads gradually with neutral-spine form. Reduce load if leg symptoms worsen during or after training.",
                 image: "/src/assets/exercises/progressive-lift.png"
             },
             {

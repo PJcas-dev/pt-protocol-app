@@ -3,16 +3,32 @@ import Timer from './Timer';
 
 export default function ExerciseItem({ exercise, isCompleted, onToggle }) {
   const [expanded, setExpanded] = useState(false);
+  const [imageUnavailable, setImageUnavailable] = useState(false);
 
   return (
     <div className={`exercise-item ${isCompleted ? 'completed' : ''}`}>
-      <div className="exercise-header" onClick={() => setExpanded(!expanded)}>
+      <div
+        className="exercise-header"
+        onClick={() => setExpanded(!expanded)}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            setExpanded((prev) => !prev);
+          }
+        }}
+        aria-expanded={expanded}
+      >
         <button
+          type="button"
           className={`check-btn ${isCompleted ? 'checked' : ''}`}
           onClick={(e) => {
             e.stopPropagation();
             onToggle();
           }}
+          aria-label={isCompleted ? `Mark ${exercise.name} as incomplete` : `Mark ${exercise.name} as complete`}
+          aria-pressed={isCompleted}
         >
           {isCompleted && <span className="checkmark">&#10003;</span>}
         </button>
@@ -38,7 +54,7 @@ export default function ExerciseItem({ exercise, isCompleted, onToggle }) {
 
         {/* Timer Icon if exercise has time-based rep/duration? Optional hint */}
 
-        <button className="expand-btn">
+        <button type="button" className="expand-btn" aria-label={expanded ? 'Collapse details' : 'Expand details'}>
           {expanded ? '-' : '+'}
         </button>
       </div>
@@ -50,9 +66,20 @@ export default function ExerciseItem({ exercise, isCompleted, onToggle }) {
             <Timer />
           </div>
 
-          {exercise.image && (
+          {exercise.image && !imageUnavailable && (
             <div className="exercise-image-container">
-              <img src={exercise.image} alt={exercise.name} className="exercise-image" />
+              <img
+                src={exercise.image}
+                alt={exercise.name}
+                className="exercise-image"
+                onError={() => setImageUnavailable(true)}
+              />
+            </div>
+          )}
+          {(!exercise.image || imageUnavailable) && (
+            <div className="exercise-image-fallback" aria-hidden="true">
+              <span className="fallback-type">{exercise.type || 'Exercise'}</span>
+              <span className="fallback-name">{exercise.name}</span>
             </div>
           )}
           {exercise.description && <p className="description">{exercise.description}</p>}
@@ -203,6 +230,31 @@ export default function ExerciseItem({ exercise, isCompleted, onToggle }) {
           height: auto;
           display: block;
           mix-blend-mode: multiply; /* Helps blend white bg images if needed */
+        }
+
+        .exercise-image-fallback {
+          margin-bottom: 1.5rem;
+          border-radius: var(--radius-sm);
+          background: var(--bg-secondary);
+          border: 1px dashed var(--border-color);
+          padding: 1rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.25rem;
+        }
+
+        .fallback-type {
+          color: var(--primary-blue-dark);
+          font-size: 0.75rem;
+          font-weight: 700;
+          letter-spacing: 0.06em;
+          text-transform: uppercase;
+        }
+
+        .fallback-name {
+          color: var(--text-primary);
+          font-size: 0.95rem;
+          font-weight: 600;
         }
 
         .description {

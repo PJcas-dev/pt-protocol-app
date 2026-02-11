@@ -8,7 +8,12 @@ function App() {
   const [currentDay, setCurrentDay] = useState(1);
   const [completedExercises, setCompletedExercises] = useState(() => {
     const saved = localStorage.getItem('pt_protocol_progress_v2');
-    return saved ? JSON.parse(saved) : {};
+    if (!saved) return {};
+    try {
+      return JSON.parse(saved);
+    } catch {
+      return {};
+    }
   });
 
   useEffect(() => {
@@ -17,28 +22,59 @@ function App() {
 
   const handleToggleExercise = (exerciseId) => {
     const key = `${currentWeekId}-d${currentDay}-${exerciseId}`;
-    setCompletedExercises(prev => ({
-      ...prev,
-      [key]: !prev[key]
-    }));
+    setCompletedExercises((prev) => {
+      const next = { ...prev };
+      if (next[key]) {
+        delete next[key];
+      } else {
+        next[key] = true;
+      }
+      return next;
+    });
   };
 
   const currentWeekData = protocol.find(p => p.id === currentWeekId);
 
-  // Calculate current week stats (average of all days or specific to current day)
-  // Let's track total potential exercises for the week: (exercises * 7 days)
-  const weekTotalPotential = currentWeekData ? currentWeekData.exercises.length * 7 : 0;
+  const parseProgressKey = (key) => {
+    const dayMarkerIndex = key.indexOf('-d');
+    if (dayMarkerIndex === -1) return null;
+    const afterDayMarker = key.slice(dayMarkerIndex + 2);
+    const dashAfterDay = afterDayMarker.indexOf('-');
+    if (dashAfterDay === -1) return null;
 
-  // Count all completed for this week across all days
-  const weekCompletedTotal = currentWeekData ? Object.keys(completedExercises).filter(key => {
-    return key.startsWith(`${currentWeekId}-`);
-  }).length : 0;
+    const weekId = key.slice(0, dayMarkerIndex);
+    const day = Number(afterDayMarker.slice(0, dashAfterDay));
+    const exerciseId = afterDayMarker.slice(dashAfterDay + 1);
+    if (!Number.isFinite(day)) return null;
+
+    return { weekId, day, exerciseId };
+  };
+
+  const completedEntries = Object.entries(completedExercises).filter(([, done]) => Boolean(done));
+
+  // Coverage metric: % of week exercises completed at least once.
+  const weekCompletedExerciseIds = new Set();
+  for (const [key] of completedEntries) {
+    const parsed = parseProgressKey(key);
+    if (parsed && parsed.weekId === currentWeekId) {
+      weekCompletedExerciseIds.add(parsed.exerciseId);
+    }
+  }
+  const weekTotalPotential = currentWeekData ? currentWeekData.exercises.length : 0;
+  const weekCompletedTotal = weekCompletedExerciseIds.size;
 
   const weekProgressPercent = weekTotalPotential > 0 ? Math.round((weekCompletedTotal / weekTotalPotential) * 100) : 0;
 
-  // Calculate overall progress across whole protocol
-  const totalProtocolPotential = protocol.reduce((sum, week) => sum + (week.exercises.length * 7), 0);
-  const totalProtocolCompleted = Object.keys(completedExercises).length;
+  // Overall coverage: % of all exercises completed at least once.
+  const completedProtocolExerciseIds = new Set();
+  for (const [key] of completedEntries) {
+    const parsed = parseProgressKey(key);
+    if (parsed) {
+      completedProtocolExerciseIds.add(`${parsed.weekId}::${parsed.exerciseId}`);
+    }
+  }
+  const totalProtocolPotential = protocol.reduce((sum, week) => sum + week.exercises.length, 0);
+  const totalProtocolCompleted = completedProtocolExerciseIds.size;
   const overallProgress = totalProtocolPotential > 0 ? Math.round((totalProtocolCompleted / totalProtocolPotential) * 100) : 0;
 
   // Day stats
@@ -64,7 +100,7 @@ function App() {
       <main className="main-content">
         <div className="top-stats">
           <div className="stat-card">
-            <div className="stat-label">Total Progress</div>
+            <div className="stat-label">Program Coverage</div>
             <div className="stat-value">{overallProgress}%</div>
             <div className="progress-bar">
               <div className="progress-fill" style={{ width: `${overallProgress}%` }} />
@@ -72,7 +108,7 @@ function App() {
           </div>
 
           <div className="stat-card">
-            <div className="stat-label">Week Progress</div>
+            <div className="stat-label">Week Coverage</div>
             <div className="stat-value">{weekProgressPercent}%</div>
             <div className="progress-bar">
               <div className="progress-fill" style={{ width: `${weekProgressPercent}%` }} />
@@ -89,7 +125,6 @@ function App() {
         <WeekView
           weekData={currentWeekData}
           currentDay={currentDay}
-          onSelectDay={setCurrentDay}
           completedExercises={completedExercises}
           onToggleExercise={handleToggleExercise}
           currentWeekId={currentWeekId}

@@ -1,4 +1,3 @@
-import Card from './Card';
 import ExerciseItem from './ExerciseItem';
 
 export default function WeekView({
@@ -6,7 +5,6 @@ export default function WeekView({
   completedExercises,
   onToggleExercise,
   currentDay,
-  onSelectDay,
   currentWeekId
 }) {
   if (!weekData) return null;
@@ -58,6 +56,30 @@ export default function WeekView({
           </ul>
         </div>
       )}
+
+      {weekData.modalities && weekData.modalities.length > 0 && (
+        <div className="info-block modalities-block">
+          <h3>Recovery Modalities</h3>
+          <ul>
+            {weekData.modalities.map((item) => (
+              <li key={item.id}>
+                <strong>{item.name}:</strong> {item.description}
+                {item.setting ? ` (${item.setting})` : ''}
+                {item.duration ? ` - ${item.duration}` : ''}
+                {item.frequency ? ` - ${item.frequency}` : ''}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <div className="safety-block" role="note" aria-label="Important medical warning signs">
+        <h3>Urgent Warning Signs</h3>
+        <p>
+          Stop the session and seek urgent care if you develop new bowel/bladder problems, numbness around the
+          groin/saddle area, severe progressive leg weakness, or rapidly worsening pain with neurological changes.
+        </p>
+      </div>
 
       <div className="tracks-list-container">
         <div className="tracks-header-row">
@@ -192,6 +214,30 @@ export default function WeekView({
            margin: 0;
            padding-left: 1.25rem;
            color: var(--text-secondary);
+        }
+
+        .modalities-block li {
+           margin-bottom: 0.4rem;
+        }
+
+        .safety-block {
+           margin: 0 2rem 1.5rem 2rem;
+           padding: 1rem 1.25rem;
+           background: #fff8f1;
+           border: 1px solid #f5d0a9;
+           border-radius: var(--radius-sm);
+           color: #7c2d12;
+        }
+
+        .safety-block h3 {
+           margin: 0 0 0.4rem 0;
+           font-size: 0.95rem;
+        }
+
+        .safety-block p {
+           margin: 0;
+           font-size: 0.9rem;
+           line-height: 1.5;
         }
 
         .tracks-list-container {
